@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'features/dictation_template_various_languages/dictation_template_various_languages_screen.dart';
+import 'features/missing_word_template/missing_word_template.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const DictationTemplateVariousLanguagesScreen(),
+      home: const MissingWordTemplateScreen(),
     );
   }
 }
-

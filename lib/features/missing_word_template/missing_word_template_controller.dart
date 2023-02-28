@@ -5,7 +5,7 @@ import 'package:missingword/extensions/list_shuffle.dart';
 import '../../mixins/snackbar_mixin.dart';
 import "dart:math";
 
-class DictationTemplateVariousLanguagesController extends GetxController
+class MissingWordTemplateController extends GetxController
     with SnackbarMixin {
   final String word = 'HORSE';
   List<String> wordInList = [];

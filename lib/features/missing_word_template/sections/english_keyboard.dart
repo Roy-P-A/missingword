@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../../mixins/base64_mixin.dart';
 
 import '../../../../widgets/click_ink_well.dart';
-import '../dictation_template_various_languages_controller.dart';
+import '../missing_word_template_controller.dart';
 
-class DictationHindiView extends StatelessWidget with Base64Mixin {
-  final DictationTemplateVariousLanguagesController controller;
+class EnglishKeyboard extends StatelessWidget with Base64Mixin {
+  final MissingWordTemplateController controller;
 
-  DictationHindiView({Key? key, required this.controller}) : super(key: key);
+  EnglishKeyboard({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

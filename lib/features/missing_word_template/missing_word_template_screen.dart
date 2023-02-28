@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
+import 'package:missingword/features/missing_word_template/sections/english_keyboard.dart';
 
 import '../../widgets/tr_icon_button.dart';
-import 'dictation_template_various_languages_controller.dart';
-import 'sections/hindi_keyboard.dart';
+import 'missing_word_template_controller.dart';
 
-class DictationTemplateVariousLanguagesScreen extends StatelessWidget {
-  const DictationTemplateVariousLanguagesScreen({Key? key}) : super(key: key);
+class MissingWordTemplateScreen extends StatelessWidget {
+  const MissingWordTemplateScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class DictationTemplateVariousLanguagesScreen extends StatelessWidget {
       DeviceOrientation.landscapeLeft,
     ]);
 
-    return GetBuilder<DictationTemplateVariousLanguagesController>(
-        init: DictationTemplateVariousLanguagesController(),
+    return GetBuilder<MissingWordTemplateController>(
+        init: MissingWordTemplateController(),
         builder: (controller) {
           return Scaffold(
             body: Stack(
@@ -65,7 +65,7 @@ class DictationTemplateVariousLanguagesScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 5,
                                     child: Center(
                                       child: Column(
                                         mainAxisAlignment:
@@ -117,11 +117,12 @@ class DictationTemplateVariousLanguagesScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 2,
-                                    child: DictationHindiView(
+                                    flex: 3,
+                                    child: EnglishKeyboard(
                                       controller: controller,
                                     ),
                                   ),
+                                  const Expanded(flex: 3, child: SizedBox())
                                 ],
                               ),
                             )),
@@ -137,7 +138,7 @@ class DictationTemplateVariousLanguagesScreen extends StatelessWidget {
   }
 
   Widget _sideMenu() {
-    final DictationTemplateVariousLanguagesController controller = Get.find();
+    final MissingWordTemplateController controller = Get.find();
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
