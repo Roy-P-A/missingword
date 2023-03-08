@@ -31,19 +31,19 @@ class EnglishKeyboard extends StatelessWidget with Base64Mixin {
                           child: Container(
                             width: constraints.maxWidth /
                                 controller.englishKeyList.length,
-                              
                             decoration: BoxDecoration(
                               color: const Color(0xFF004AAD),
-                              
                               borderRadius: BorderRadius.circular(5),
-                              border: Border.all(color: Colors.yellow,width: 2),
-                              
+                              border:
+                                  Border.all(color: Colors.yellow, width: 2),
                             ),
                             child: Center(
                               child: Text(
                                 e,
                                 textScaleFactor: 0.8,
-                                style: Theme.of(context).textTheme.headline5
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5
                                     ?.copyWith(color: Colors.white),
                               ),
                             ),

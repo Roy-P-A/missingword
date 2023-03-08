@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
 import 'package:missingword/features/missing_word_template/sections/english_keyboard.dart';
-
+import '../../widgets/dimensions.dart';
 import '../../widgets/tr_icon_button.dart';
+
 import 'missing_word_template_controller.dart';
 
 class MissingWordTemplateScreen extends StatelessWidget {
@@ -31,101 +32,14 @@ class MissingWordTemplateScreen extends StatelessWidget {
                   alignment: Alignment.center,
                 ),
                 SafeArea(
-                  //bottom: false,
-                  left: false,
                   right: false,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Expanded(
-                            flex: 7,
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: Center(
-                                      child: MediaQuery(
-                                        data: const MediaQueryData(
-                                            textScaleFactor: 0.8),
-                                        child: HtmlWidget(
-                                          controller.question,
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .headline4
-                                              ?.copyWith(color: Colors.blue),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 5,
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                for (int i = 0;
-                                                    i <
-                                                        controller
-                                                            .wordInList.length;
-                                                    i++)
-                                                  Container(
-                                                    color: Colors
-                                                        .lightBlueAccent
-                                                        .shade400,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 10,
-                                                          vertical: 10),
-                                                      child: Column(
-                                                        children: [
-                                                          Text(
-                                                              i <
-                                                                      controller
-                                                                          .wordInList
-                                                                          .length
-                                                                  ? controller
-                                                                          .wordInList[
-                                                                      i]
-                                                                  : '',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .headline4
-                                                                  ?.copyWith(
-                                                                      color: Colors
-                                                                          .white)),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                              ]),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: EnglishKeyboard(
-                                      controller: controller,
-                                    ),
-                                  ),
-                                  const Expanded(flex: 3, child: SizedBox())
-                                ],
-                              ),
-                            )),
+                        MissingWordView(),
                         _sideMenu()
                       ],
                     ),
@@ -152,7 +66,7 @@ class MissingWordTemplateScreen extends StatelessWidget {
             icon: Image.asset(
               "assets/images/buttons/go_back.png",
             ),
-            iconSize: 60,
+            iconSize: iconSize,
             onPressed: () {},
           ),
         ),
@@ -166,7 +80,7 @@ class MissingWordTemplateScreen extends StatelessWidget {
             icon: Image.asset(
               "assets/images/buttons/repeat.png",
             ),
-            iconSize: 60,
+            iconSize: iconSize,
             onPressed: () {},
           ),
         ),
@@ -182,7 +96,7 @@ class MissingWordTemplateScreen extends StatelessWidget {
               icon: Image.asset(
                 "assets/images/buttons/toffee_shot.png",
               ),
-              iconSize: 60,
+              iconSize: iconSize,
               onPressed: () {}),
         ),
         const SizedBox(
@@ -197,7 +111,7 @@ class MissingWordTemplateScreen extends StatelessWidget {
               icon: Image.asset(
                 "assets/images/buttons/done.png",
               ),
-              iconSize: 60,
+              iconSize: iconSize,
               onPressed: () {
                 controller.onTappedDoneButton();
               }),
@@ -216,12 +130,110 @@ class MissingWordTemplateScreen extends StatelessWidget {
                   icon: Image.asset(
                     "assets/images/buttons/skip.png",
                   ),
-                  iconSize: 60,
+                  iconSize: iconSize,
                   onPressed: () {}),
             ),
           ],
         )
       ],
+    );
+  }
+}
+
+class MissingWordView extends StatelessWidget {
+  MissingWordView({
+    Key? key,
+  }) : super(key: key);
+  final MissingWordTemplateController controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center    ,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Center(
+                child: MediaQuery(
+                  data: const MediaQueryData(
+                      textScaleFactor: 1),
+                  child: HtmlWidget(
+                    controller.question,
+                    textStyle: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(color: Colors.blue),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: GetPlatform.isDesktop? 7:6,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment:
+                      MainAxisAlignment.center,
+                  children: [
+                    Row(
+                        mainAxisAlignment:
+                            MainAxisAlignment.center,
+                        children: [
+                          for (int i = 0;
+                              i <
+                                  controller
+                                      .wordInList.length;
+                              i++)
+                            Container(
+                              color: Colors
+                                  .lightBlueAccent
+                                  .shade400,
+                              child: Padding(
+                                padding: const EdgeInsets
+                                        .symmetric(
+                                    horizontal: 10,
+                                    vertical: 10),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                        i <
+                                                controller
+                                                    .wordInList
+                                                    .length
+                                            ? controller
+                                                    .wordInList[
+                                                i]
+                                            : '',
+                                        style: Theme.of(
+                                                context)
+                                            .textTheme
+                                            .headline4
+                                            ?.copyWith(
+                                                color: Colors
+                                                    .white)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        ]),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: (GetPlatform.isDesktop || (MediaQuery.of(context).size.width < 1000 && MediaQuery.of(context).size.width >= 650))?1:3,
+              child: EnglishKeyboard(
+                controller: controller,
+              ),
+            ),
+            const Expanded(flex: 3, child: SizedBox())
+          ],
+        ),
+      ),
     );
   }
 }
