@@ -52,30 +52,7 @@ class MissingWordView extends StatelessWidget {
                   children: [
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       for (int i = 0; i < controller.wordInList.length; i++)
-                        Container(
-                          color: Colors.lightBlueAccent.shade400,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 10),
-                            child: Column(
-                              children: [
-                                Text(
-                                    i < controller.wordInList.length
-                                        ? controller.wordInList[i]
-                                        : '',
-                                    style: smallmobile
-                                        ? Theme.of(context)
-                                            .textTheme
-                                            .headline5
-                                            ?.copyWith(color: Colors.white)
-                                        : Theme.of(context)
-                                            .textTheme
-                                            .headline4
-                                            ?.copyWith(color: Colors.white)),
-                              ],
-                            ),
-                          ),
-                        ),
+                        displayWordInList(i, smallmobile, context),
                     ]),
                   ],
                 ),
@@ -88,6 +65,32 @@ class MissingWordView extends StatelessWidget {
               ),
             ),
             const Expanded(flex: 3, child: SizedBox())
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container displayWordInList(int i, bool smallmobile, BuildContext context) {
+    return Container(
+      color: Colors.lightBlueAccent.shade400,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
+          children: [
+            Text(
+                i < controller.wordInList.length
+                    ? controller.wordInList[i]
+                    : '',
+                style: smallmobile
+                    ? Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.copyWith(color: Colors.white)
+                    : Theme.of(context)
+                        .textTheme
+                        .headline4
+                        ?.copyWith(color: Colors.white)),
           ],
         ),
       ),
