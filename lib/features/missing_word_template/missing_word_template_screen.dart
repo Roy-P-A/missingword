@@ -34,14 +34,12 @@ class MissingWordTemplateScreen extends StatelessWidget {
                 SafeArea(
                   right: false,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        MissingWordView(),
-                        _sideMenu()
-                      ],
+                      children: [MissingWordView(), _sideMenu()],
                     ),
                   ),
                 ),
@@ -148,84 +146,76 @@ class MissingWordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final smallmobile = MediaQuery.of(context).size.height < 500;
+    final tab = (MediaQuery.of(context).size.height < 1000 &&
+        MediaQuery.of(context).size.height >= 650);
     return Expanded(
       child: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center    ,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               flex: 2,
               child: Center(
                 child: MediaQuery(
-                  data: const MediaQueryData(
-                      textScaleFactor: 1),
+                  data: const MediaQueryData(textScaleFactor: 1),
                   child: HtmlWidget(
                     controller.question,
-                    textStyle: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        ?.copyWith(color: Colors.blue),
+                    textStyle: smallmobile
+                        ? Theme.of(context)
+                            .textTheme
+                            .headline5
+                            ?.copyWith(color: Colors.blue)
+                        : Theme.of(context)
+                            .textTheme
+                            .headline4
+                            ?.copyWith(color: Colors.blue),
                   ),
                 ),
               ),
             ),
             Expanded(
-              flex: GetPlatform.isDesktop? 7:6,
+              flex: (GetPlatform.isDesktop || tab) ? 6 : 7,
               child: Center(
                 child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.center,
-                        children: [
-                          for (int i = 0;
-                              i <
-                                  controller
-                                      .wordInList.length;
-                              i++)
-                            Container(
-                              color: Colors
-                                  .lightBlueAccent
-                                  .shade400,
-                              child: Padding(
-                                padding: const EdgeInsets
-                                        .symmetric(
-                                    horizontal: 10,
-                                    vertical: 10),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                        i <
-                                                controller
-                                                    .wordInList
-                                                    .length
-                                            ? controller
-                                                    .wordInList[
-                                                i]
-                                            : '',
-                                        style: Theme.of(
-                                                context)
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      for (int i = 0; i < controller.wordInList.length; i++)
+                        Container(
+                          color: Colors.lightBlueAccent.shade400,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Column(
+                              children: [
+                                Text(
+                                    i < controller.wordInList.length
+                                        ? controller.wordInList[i]
+                                        : '',
+                                    style: smallmobile
+                                        ? Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            ?.copyWith(color: Colors.white)
+                                        : Theme.of(context)
                                             .textTheme
                                             .headline4
-                                            ?.copyWith(
-                                                color: Colors
-                                                    .white)),
-                                  ],
-                                ),
-                              ),
+                                            ?.copyWith(color: Colors.white)),
+                              ],
                             ),
-                        ]),
+                          ),
+                        ),
+                    ]),
                   ],
                 ),
               ),
             ),
             Expanded(
-              flex: (GetPlatform.isDesktop || (MediaQuery.of(context).size.width < 1000 && MediaQuery.of(context).size.width >= 650))?1:3,
+              flex: (GetPlatform.isDesktop || tab) ? 2 : 3,
               child: EnglishKeyboard(
                 controller: controller,
               ),
