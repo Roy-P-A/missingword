@@ -38,7 +38,7 @@ class MissingWordTemplateScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        MissingWordView(),
+                        Expanded(child: MissingWordView()),
                         _sideMenu(),
                       ],
                     ),

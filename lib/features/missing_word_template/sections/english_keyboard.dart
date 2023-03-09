@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../mixins/base64_mixin.dart';
-
 import '../../../../widgets/click_ink_well.dart';
 import '../missing_word_template_controller.dart';
 
@@ -50,7 +49,7 @@ class EnglishKeyboard extends StatelessWidget with Base64Mixin {
         child: Center(
           child: Text(
             e,
-            textScaleFactor: 0.8,
+            textScaleFactor: 1,
             style: Theme.of(context)
                 .textTheme
                 .headline5

@@ -5,10 +5,8 @@ import '../../mixins/snackbar_mixin.dart';
 import "dart:math";
 
 class MissingWordTemplateController extends GetxController with SnackbarMixin {
-  final String word = 'MART';
+  final String word = 'ELEPHANT';
   List<String> wordInList = [];
-
- 
 
   int remainingRandomKeys = 2;
   final _random = Random();
@@ -32,7 +30,7 @@ class MissingWordTemplateController extends GetxController with SnackbarMixin {
   final _displayList = (List<String>.empty()).obs;
   List<String> get displayList => _displayList;
 
-  String get question => 'Complete the word by clicking on letters below.';
+  String get question => 'Complete the word by clicking on letters below';
   List<String> partialRandomKeys = [];
 
   final englishKeyList = [
